@@ -1,28 +1,34 @@
+import java.util.ArrayList;
+import java.util.List;
+
+import company.abstracts.Employee;
 import company.models.Manager;
 import company.models.Worker;
 
 public class Main {
     public static void main(String[] args) {
-        Worker worker1 = new Worker("John", 2000, 1);
-        Worker worker2 = new Worker("Alice", 1800, 2);
-        Worker worker3 = new Worker("Bob", 2200, 3);
-        Worker worker4 = new Worker("Emma", 1900, 4);
+        List<Employee> employees = new ArrayList<>();
 
-        Manager manager = new Manager("Michael", 3500, 5);
+        Worker worker1 = new Worker("John", 2000, 1, "2022-01-01", "Junior Developer");
+        Worker worker2 = new Worker("Alice", 1800, 2, "2022-03-15", "Intern");
+        Worker worker3 = new Worker("Bob", 2200, 3, "2021-11-20", "Senior Developer");
+        Worker worker4 = new Worker("Emma", 1900, 4, "2023-02-10", "Project Manager");
 
-        System.out.println("Worker 1 Salary: " + worker1.getSalary());
-        worker1.work();
+        Manager manager = new Manager("Michael", 3500, 5, "2020-05-10", "CTO");
 
-        System.out.println("Worker 2 Salary: " + worker2.getSalary());
-        worker2.work();
+        employees.add(worker1);
+        employees.add(worker2);
+        employees.add(worker3);
+        employees.add(worker4);
+        employees.add(manager);
 
-        System.out.println("Worker 3 Salary: " + worker3.getSalary());
-        worker3.work();
-
-        System.out.println("Worker 4 Salary: " + worker4.getSalary());
-        worker4.work();
-
-        System.out.println("Manager Salary: " + manager.getSalary());
-        manager.work();
+        for (Employee employee : employees) {
+            System.out.println("- " + employee.getName() +
+                    " (ID: " + employee.hashCode() +
+                    ", Position: " + employee.getPosition() +
+                    ", Hire date: " + employee.getHireDate() +
+                    ", Salary: " + employee.getSalary() + ")");
+            employee.work();
+        }
     }
 }
